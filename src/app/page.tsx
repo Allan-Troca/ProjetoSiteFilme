@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Usuario = {
@@ -8,6 +9,7 @@ type Usuario = {
 }
 
 export default function Home() {
+  const router = useRouter()
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +19,7 @@ export default function Home() {
 
   const buscarUsuarios = async () => {
     setIsLoading(true)
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const response = await fetch('/api/usuarios')
 
     const resultado = await response.json()
     setUsuarios(resultado as any)
@@ -30,7 +32,7 @@ export default function Home() {
       <ul>
         {
           usuarios?.map((usuario) => {
-            return <li>{usuario.name}</li>
+            return <li key={usuario.id} onClick={() => router.push(`/usuarios/${usuario.id}`)}>{usuario.name}</li>
           })
         }
       </ul>
