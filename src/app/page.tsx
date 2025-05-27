@@ -5,7 +5,7 @@ const links = [
   { name: 'Meet our leadership', href: '#' },
 ]
 
-export default function Example() {
+export default function Page() {
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img

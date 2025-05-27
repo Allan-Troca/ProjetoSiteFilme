@@ -1,8 +1,8 @@
-'use client'
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+"use client";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { queryClient } from "./lib/reactQuery";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 export default function RootLayout({
   children,
@@ -11,11 +11,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
+      <body className={`antialiased`}>
         <SessionProvider>
-        {children}
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
         </SessionProvider>
       </body>
     </html>
