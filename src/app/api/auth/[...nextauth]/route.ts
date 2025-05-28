@@ -1,3 +1,4 @@
+import { prisma } from "@/app/lib/prisma";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
@@ -28,6 +29,25 @@ export const authOptions = {
   },
   session: { strategy: "jwt" },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      console.log(user, account, profile);
+      try {
+        const userExists = await prisma.usuario.findFirst({
+          where: { name: user.name },
+        });
+      if (!userExists) {
+        await prisma.usuario.create({ data: {
+          email: user.email ?? null,
+          name: user.name,
+          image: user.image,
+        } });
+      }
+      return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
     async jwt({ token, user }) {
       if (user) token.user = user;
       return token;

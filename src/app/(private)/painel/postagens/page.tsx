@@ -33,7 +33,7 @@ export default function PostagensPage() {
         <div>Erro ao carregar as postagens</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.map((item) => {
+          {data.map((item: any) => {
             return (
               <Noticia key={item.id} title={item.title} body={item.body} />
             );
