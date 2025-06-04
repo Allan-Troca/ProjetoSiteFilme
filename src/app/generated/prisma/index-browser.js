@@ -138,6 +138,15 @@ exports.Prisma.PostagemScalarFieldEnum = {
   deleted_at: 'deleted_at'
 };
 
+exports.Prisma.TarefaScalarFieldEnum = {
+  id: 'id',
+  conteudo: 'conteudo',
+  usuario_id: 'usuario_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,7 +160,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Usuario: 'Usuario',
-  Postagem: 'Postagem'
+  Postagem: 'Postagem',
+  Tarefa: 'Tarefa'
 };
 
 /**

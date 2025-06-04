@@ -9,15 +9,16 @@ datasource db {
 }
 
 model Usuario {
-  id         Int       @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   name       String
   email      String?    @unique
   image      String?
   apelido    String?
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
   deleted_at DateTime?
   postagens  Postagem[]
+  Tarefa     Tarefa[]
 
   @@map("usuarios")
 }
@@ -33,4 +34,17 @@ model Postagem {
   deleted_at DateTime?
 
   @@map("postagens")
+}
+
+model Tarefa {
+  id         Int       @id @default(autoincrement())
+  conteudo   String
+  concluido  Boolean   @default(false)
+  usuario_id Int
+  usuario    Usuario   @relation(fields: [usuario_id], references: [id])
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  @@map("tarefas")
 }

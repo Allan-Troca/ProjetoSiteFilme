@@ -23,6 +23,11 @@ export type Usuario = $Result.DefaultSelection<Prisma.$UsuarioPayload>
  * 
  */
 export type Postagem = $Result.DefaultSelection<Prisma.$PostagemPayload>
+/**
+ * Model Tarefa
+ * 
+ */
+export type Tarefa = $Result.DefaultSelection<Prisma.$TarefaPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get postagem(): Prisma.PostagemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tarefa`: Exposes CRUD operations for the **Tarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tarefas
+    * const tarefas = await prisma.tarefa.findMany()
+    * ```
+    */
+  get tarefa(): Prisma.TarefaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Usuario: 'Usuario',
-    Postagem: 'Postagem'
+    Postagem: 'Postagem',
+    Tarefa: 'Tarefa'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "usuario" | "postagem"
+      modelProps: "usuario" | "postagem" | "tarefa"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      Tarefa: {
+        payload: Prisma.$TarefaPayload<ExtArgs>
+        fields: Prisma.TarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.TarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          findMany: {
+            args: Prisma.TarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>[]
+          }
+          create: {
+            args: Prisma.TarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          createMany: {
+            args: Prisma.TarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.TarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          update: {
+            args: Prisma.TarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.TarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.TarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.TarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTarefa>
+          }
+          groupBy: {
+            args: Prisma.TarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<TarefaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     usuario?: UsuarioOmit
     postagem?: PostagemOmit
+    tarefa?: TarefaOmit
   }
 
   /* Types for Logging */
@@ -961,10 +1052,12 @@ export namespace Prisma {
 
   export type UsuarioCountOutputType = {
     postagens: number
+    Tarefa: number
   }
 
   export type UsuarioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     postagens?: boolean | UsuarioCountOutputTypeCountPostagensArgs
+    Tarefa?: boolean | UsuarioCountOutputTypeCountTarefaArgs
   }
 
   // Custom InputTypes
@@ -983,6 +1076,13 @@ export namespace Prisma {
    */
   export type UsuarioCountOutputTypeCountPostagensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PostagemWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountTarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaWhereInput
   }
 
 
@@ -1213,6 +1313,7 @@ export namespace Prisma {
     updated_at?: boolean
     deleted_at?: boolean
     postagens?: boolean | Usuario$postagensArgs<ExtArgs>
+    Tarefa?: boolean | Usuario$TarefaArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
@@ -1252,6 +1353,7 @@ export namespace Prisma {
   export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "image" | "apelido" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["usuario"]>
   export type UsuarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     postagens?: boolean | Usuario$postagensArgs<ExtArgs>
+    Tarefa?: boolean | Usuario$TarefaArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuarioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1261,6 +1363,7 @@ export namespace Prisma {
     name: "Usuario"
     objects: {
       postagens: Prisma.$PostagemPayload<ExtArgs>[]
+      Tarefa: Prisma.$TarefaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1666,6 +1769,7 @@ export namespace Prisma {
   export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     postagens<T extends Usuario$postagensArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$postagensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostagemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Tarefa<T extends Usuario$TarefaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$TarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2110,6 +2214,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostagemScalarFieldEnum | PostagemScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.Tarefa
+   */
+  export type Usuario$TarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    where?: TarefaWhereInput
+    orderBy?: TarefaOrderByWithRelationInput | TarefaOrderByWithRelationInput[]
+    cursor?: TarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TarefaScalarFieldEnum | TarefaScalarFieldEnum[]
   }
 
   /**
@@ -3252,6 +3380,1113 @@ export namespace Prisma {
 
 
   /**
+   * Model Tarefa
+   */
+
+  export type AggregateTarefa = {
+    _count: TarefaCountAggregateOutputType | null
+    _avg: TarefaAvgAggregateOutputType | null
+    _sum: TarefaSumAggregateOutputType | null
+    _min: TarefaMinAggregateOutputType | null
+    _max: TarefaMaxAggregateOutputType | null
+  }
+
+  export type TarefaAvgAggregateOutputType = {
+    id: number | null
+    usuario_id: number | null
+  }
+
+  export type TarefaSumAggregateOutputType = {
+    id: number | null
+    usuario_id: number | null
+  }
+
+  export type TarefaMinAggregateOutputType = {
+    id: number | null
+    conteudo: string | null
+    usuario_id: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type TarefaMaxAggregateOutputType = {
+    id: number | null
+    conteudo: string | null
+    usuario_id: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    deleted_at: Date | null
+  }
+
+  export type TarefaCountAggregateOutputType = {
+    id: number
+    conteudo: number
+    usuario_id: number
+    created_at: number
+    updated_at: number
+    deleted_at: number
+    _all: number
+  }
+
+
+  export type TarefaAvgAggregateInputType = {
+    id?: true
+    usuario_id?: true
+  }
+
+  export type TarefaSumAggregateInputType = {
+    id?: true
+    usuario_id?: true
+  }
+
+  export type TarefaMinAggregateInputType = {
+    id?: true
+    conteudo?: true
+    usuario_id?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type TarefaMaxAggregateInputType = {
+    id?: true
+    conteudo?: true
+    usuario_id?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+  }
+
+  export type TarefaCountAggregateInputType = {
+    id?: true
+    conteudo?: true
+    usuario_id?: true
+    created_at?: true
+    updated_at?: true
+    deleted_at?: true
+    _all?: true
+  }
+
+  export type TarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tarefa to aggregate.
+     */
+    where?: TarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tarefas to fetch.
+     */
+    orderBy?: TarefaOrderByWithRelationInput | TarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tarefas
+    **/
+    _count?: true | TarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TarefaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TarefaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TarefaMaxAggregateInputType
+  }
+
+  export type GetTarefaAggregateType<T extends TarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTarefa[P]>
+      : GetScalarType<T[P], AggregateTarefa[P]>
+  }
+
+
+
+
+  export type TarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaWhereInput
+    orderBy?: TarefaOrderByWithAggregationInput | TarefaOrderByWithAggregationInput[]
+    by: TarefaScalarFieldEnum[] | TarefaScalarFieldEnum
+    having?: TarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TarefaCountAggregateInputType | true
+    _avg?: TarefaAvgAggregateInputType
+    _sum?: TarefaSumAggregateInputType
+    _min?: TarefaMinAggregateInputType
+    _max?: TarefaMaxAggregateInputType
+  }
+
+  export type TarefaGroupByOutputType = {
+    id: number
+    conteudo: string
+    usuario_id: number
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+    _count: TarefaCountAggregateOutputType | null
+    _avg: TarefaAvgAggregateOutputType | null
+    _sum: TarefaSumAggregateOutputType | null
+    _min: TarefaMinAggregateOutputType | null
+    _max: TarefaMaxAggregateOutputType | null
+  }
+
+  type GetTarefaGroupByPayload<T extends TarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], TarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conteudo?: boolean
+    usuario_id?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefa"]>
+
+  export type TarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conteudo?: boolean
+    usuario_id?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefa"]>
+
+  export type TarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    conteudo?: boolean
+    usuario_id?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefa"]>
+
+  export type TarefaSelectScalar = {
+    id?: boolean
+    conteudo?: boolean
+    usuario_id?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    deleted_at?: boolean
+  }
+
+  export type TarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "conteudo" | "usuario_id" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["tarefa"]>
+  export type TarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+  export type TarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+  export type TarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+
+  export type $TarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tarefa"
+    objects: {
+      usuario: Prisma.$UsuarioPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      conteudo: string
+      usuario_id: number
+      created_at: Date
+      updated_at: Date
+      deleted_at: Date | null
+    }, ExtArgs["result"]["tarefa"]>
+    composites: {}
+  }
+
+  type TarefaGetPayload<S extends boolean | null | undefined | TarefaDefaultArgs> = $Result.GetResult<Prisma.$TarefaPayload, S>
+
+  type TarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TarefaCountAggregateInputType | true
+    }
+
+  export interface TarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tarefa'], meta: { name: 'Tarefa' } }
+    /**
+     * Find zero or one Tarefa that matches the filter.
+     * @param {TarefaFindUniqueArgs} args - Arguments to find a Tarefa
+     * @example
+     * // Get one Tarefa
+     * const tarefa = await prisma.tarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TarefaFindUniqueArgs>(args: SelectSubset<T, TarefaFindUniqueArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Tarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TarefaFindUniqueOrThrowArgs} args - Arguments to find a Tarefa
+     * @example
+     * // Get one Tarefa
+     * const tarefa = await prisma.tarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, TarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaFindFirstArgs} args - Arguments to find a Tarefa
+     * @example
+     * // Get one Tarefa
+     * const tarefa = await prisma.tarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TarefaFindFirstArgs>(args?: SelectSubset<T, TarefaFindFirstArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaFindFirstOrThrowArgs} args - Arguments to find a Tarefa
+     * @example
+     * // Get one Tarefa
+     * const tarefa = await prisma.tarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, TarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Tarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tarefas
+     * const tarefas = await prisma.tarefa.findMany()
+     * 
+     * // Get first 10 Tarefas
+     * const tarefas = await prisma.tarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tarefaWithIdOnly = await prisma.tarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TarefaFindManyArgs>(args?: SelectSubset<T, TarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Tarefa.
+     * @param {TarefaCreateArgs} args - Arguments to create a Tarefa.
+     * @example
+     * // Create one Tarefa
+     * const Tarefa = await prisma.tarefa.create({
+     *   data: {
+     *     // ... data to create a Tarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends TarefaCreateArgs>(args: SelectSubset<T, TarefaCreateArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Tarefas.
+     * @param {TarefaCreateManyArgs} args - Arguments to create many Tarefas.
+     * @example
+     * // Create many Tarefas
+     * const tarefa = await prisma.tarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TarefaCreateManyArgs>(args?: SelectSubset<T, TarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tarefas and returns the data saved in the database.
+     * @param {TarefaCreateManyAndReturnArgs} args - Arguments to create many Tarefas.
+     * @example
+     * // Create many Tarefas
+     * const tarefa = await prisma.tarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tarefas and only return the `id`
+     * const tarefaWithIdOnly = await prisma.tarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, TarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Tarefa.
+     * @param {TarefaDeleteArgs} args - Arguments to delete one Tarefa.
+     * @example
+     * // Delete one Tarefa
+     * const Tarefa = await prisma.tarefa.delete({
+     *   where: {
+     *     // ... filter to delete one Tarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TarefaDeleteArgs>(args: SelectSubset<T, TarefaDeleteArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Tarefa.
+     * @param {TarefaUpdateArgs} args - Arguments to update one Tarefa.
+     * @example
+     * // Update one Tarefa
+     * const tarefa = await prisma.tarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TarefaUpdateArgs>(args: SelectSubset<T, TarefaUpdateArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Tarefas.
+     * @param {TarefaDeleteManyArgs} args - Arguments to filter Tarefas to delete.
+     * @example
+     * // Delete a few Tarefas
+     * const { count } = await prisma.tarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TarefaDeleteManyArgs>(args?: SelectSubset<T, TarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tarefas
+     * const tarefa = await prisma.tarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TarefaUpdateManyArgs>(args: SelectSubset<T, TarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tarefas and returns the data updated in the database.
+     * @param {TarefaUpdateManyAndReturnArgs} args - Arguments to update many Tarefas.
+     * @example
+     * // Update many Tarefas
+     * const tarefa = await prisma.tarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tarefas and only return the `id`
+     * const tarefaWithIdOnly = await prisma.tarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, TarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Tarefa.
+     * @param {TarefaUpsertArgs} args - Arguments to update or create a Tarefa.
+     * @example
+     * // Update or create a Tarefa
+     * const tarefa = await prisma.tarefa.upsert({
+     *   create: {
+     *     // ... data to create a Tarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TarefaUpsertArgs>(args: SelectSubset<T, TarefaUpsertArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Tarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaCountArgs} args - Arguments to filter Tarefas to count.
+     * @example
+     * // Count the number of Tarefas
+     * const count = await prisma.tarefa.count({
+     *   where: {
+     *     // ... the filter for the Tarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends TarefaCountArgs>(
+      args?: Subset<T, TarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TarefaAggregateArgs>(args: Subset<T, TarefaAggregateArgs>): Prisma.PrismaPromise<GetTarefaAggregateType<T>>
+
+    /**
+     * Group by Tarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TarefaGroupByArgs['orderBy'] }
+        : { orderBy?: TarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tarefa model
+   */
+  readonly fields: TarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Tarefa model
+   */
+  interface TarefaFieldRefs {
+    readonly id: FieldRef<"Tarefa", 'Int'>
+    readonly conteudo: FieldRef<"Tarefa", 'String'>
+    readonly usuario_id: FieldRef<"Tarefa", 'Int'>
+    readonly created_at: FieldRef<"Tarefa", 'DateTime'>
+    readonly updated_at: FieldRef<"Tarefa", 'DateTime'>
+    readonly deleted_at: FieldRef<"Tarefa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Tarefa findUnique
+   */
+  export type TarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which Tarefa to fetch.
+     */
+    where: TarefaWhereUniqueInput
+  }
+
+  /**
+   * Tarefa findUniqueOrThrow
+   */
+  export type TarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which Tarefa to fetch.
+     */
+    where: TarefaWhereUniqueInput
+  }
+
+  /**
+   * Tarefa findFirst
+   */
+  export type TarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which Tarefa to fetch.
+     */
+    where?: TarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tarefas to fetch.
+     */
+    orderBy?: TarefaOrderByWithRelationInput | TarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tarefas.
+     */
+    cursor?: TarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tarefas.
+     */
+    distinct?: TarefaScalarFieldEnum | TarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa findFirstOrThrow
+   */
+  export type TarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which Tarefa to fetch.
+     */
+    where?: TarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tarefas to fetch.
+     */
+    orderBy?: TarefaOrderByWithRelationInput | TarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tarefas.
+     */
+    cursor?: TarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tarefas.
+     */
+    distinct?: TarefaScalarFieldEnum | TarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa findMany
+   */
+  export type TarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which Tarefas to fetch.
+     */
+    where?: TarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tarefas to fetch.
+     */
+    orderBy?: TarefaOrderByWithRelationInput | TarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tarefas.
+     */
+    cursor?: TarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tarefas.
+     */
+    skip?: number
+    distinct?: TarefaScalarFieldEnum | TarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa create
+   */
+  export type TarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Tarefa.
+     */
+    data: XOR<TarefaCreateInput, TarefaUncheckedCreateInput>
+  }
+
+  /**
+   * Tarefa createMany
+   */
+  export type TarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tarefas.
+     */
+    data: TarefaCreateManyInput | TarefaCreateManyInput[]
+  }
+
+  /**
+   * Tarefa createManyAndReturn
+   */
+  export type TarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Tarefas.
+     */
+    data: TarefaCreateManyInput | TarefaCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tarefa update
+   */
+  export type TarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Tarefa.
+     */
+    data: XOR<TarefaUpdateInput, TarefaUncheckedUpdateInput>
+    /**
+     * Choose, which Tarefa to update.
+     */
+    where: TarefaWhereUniqueInput
+  }
+
+  /**
+   * Tarefa updateMany
+   */
+  export type TarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tarefas.
+     */
+    data: XOR<TarefaUpdateManyMutationInput, TarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which Tarefas to update
+     */
+    where?: TarefaWhereInput
+    /**
+     * Limit how many Tarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tarefa updateManyAndReturn
+   */
+  export type TarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update Tarefas.
+     */
+    data: XOR<TarefaUpdateManyMutationInput, TarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which Tarefas to update
+     */
+    where?: TarefaWhereInput
+    /**
+     * Limit how many Tarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tarefa upsert
+   */
+  export type TarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Tarefa to update in case it exists.
+     */
+    where: TarefaWhereUniqueInput
+    /**
+     * In case the Tarefa found by the `where` argument doesn't exist, create a new Tarefa with this data.
+     */
+    create: XOR<TarefaCreateInput, TarefaUncheckedCreateInput>
+    /**
+     * In case the Tarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TarefaUpdateInput, TarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * Tarefa delete
+   */
+  export type TarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+    /**
+     * Filter which Tarefa to delete.
+     */
+    where: TarefaWhereUniqueInput
+  }
+
+  /**
+   * Tarefa deleteMany
+   */
+  export type TarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tarefas to delete
+     */
+    where?: TarefaWhereInput
+    /**
+     * Limit how many Tarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tarefa without action
+   */
+  export type TarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tarefa
+     */
+    select?: TarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tarefa
+     */
+    omit?: TarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3287,6 +4522,18 @@ export namespace Prisma {
   };
 
   export type PostagemScalarFieldEnum = (typeof PostagemScalarFieldEnum)[keyof typeof PostagemScalarFieldEnum]
+
+
+  export const TarefaScalarFieldEnum: {
+    id: 'id',
+    conteudo: 'conteudo',
+    usuario_id: 'usuario_id',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    deleted_at: 'deleted_at'
+  };
+
+  export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3354,6 +4601,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Usuario"> | Date | string
     deleted_at?: DateTimeNullableFilter<"Usuario"> | Date | string | null
     postagens?: PostagemListRelationFilter
+    Tarefa?: TarefaListRelationFilter
   }
 
   export type UsuarioOrderByWithRelationInput = {
@@ -3366,6 +4614,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     deleted_at?: SortOrderInput | SortOrder
     postagens?: PostagemOrderByRelationAggregateInput
+    Tarefa?: TarefaOrderByRelationAggregateInput
   }
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -3381,6 +4630,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Usuario"> | Date | string
     deleted_at?: DateTimeNullableFilter<"Usuario"> | Date | string | null
     postagens?: PostagemListRelationFilter
+    Tarefa?: TarefaListRelationFilter
   }, "id" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
@@ -3480,6 +4730,68 @@ export namespace Prisma {
     deleted_at?: DateTimeNullableWithAggregatesFilter<"Postagem"> | Date | string | null
   }
 
+  export type TarefaWhereInput = {
+    AND?: TarefaWhereInput | TarefaWhereInput[]
+    OR?: TarefaWhereInput[]
+    NOT?: TarefaWhereInput | TarefaWhereInput[]
+    id?: IntFilter<"Tarefa"> | number
+    conteudo?: StringFilter<"Tarefa"> | string
+    usuario_id?: IntFilter<"Tarefa"> | number
+    created_at?: DateTimeFilter<"Tarefa"> | Date | string
+    updated_at?: DateTimeFilter<"Tarefa"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
+    usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+  }
+
+  export type TarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    conteudo?: SortOrder
+    usuario_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    usuario?: UsuarioOrderByWithRelationInput
+  }
+
+  export type TarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TarefaWhereInput | TarefaWhereInput[]
+    OR?: TarefaWhereInput[]
+    NOT?: TarefaWhereInput | TarefaWhereInput[]
+    conteudo?: StringFilter<"Tarefa"> | string
+    usuario_id?: IntFilter<"Tarefa"> | number
+    created_at?: DateTimeFilter<"Tarefa"> | Date | string
+    updated_at?: DateTimeFilter<"Tarefa"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
+    usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+  }, "id">
+
+  export type TarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    conteudo?: SortOrder
+    usuario_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrderInput | SortOrder
+    _count?: TarefaCountOrderByAggregateInput
+    _avg?: TarefaAvgOrderByAggregateInput
+    _max?: TarefaMaxOrderByAggregateInput
+    _min?: TarefaMinOrderByAggregateInput
+    _sum?: TarefaSumOrderByAggregateInput
+  }
+
+  export type TarefaScalarWhereWithAggregatesInput = {
+    AND?: TarefaScalarWhereWithAggregatesInput | TarefaScalarWhereWithAggregatesInput[]
+    OR?: TarefaScalarWhereWithAggregatesInput[]
+    NOT?: TarefaScalarWhereWithAggregatesInput | TarefaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Tarefa"> | number
+    conteudo?: StringWithAggregatesFilter<"Tarefa"> | string
+    usuario_id?: IntWithAggregatesFilter<"Tarefa"> | number
+    created_at?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
+    deleted_at?: DateTimeNullableWithAggregatesFilter<"Tarefa"> | Date | string | null
+  }
+
   export type UsuarioCreateInput = {
     name: string
     email?: string | null
@@ -3489,6 +4801,7 @@ export namespace Prisma {
     updated_at?: Date | string
     deleted_at?: Date | string | null
     postagens?: PostagemCreateNestedManyWithoutUsuarioInput
+    Tarefa?: TarefaCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateInput = {
@@ -3501,6 +4814,7 @@ export namespace Prisma {
     updated_at?: Date | string
     deleted_at?: Date | string | null
     postagens?: PostagemUncheckedCreateNestedManyWithoutUsuarioInput
+    Tarefa?: TarefaUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUpdateInput = {
@@ -3512,6 +4826,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     postagens?: PostagemUpdateManyWithoutUsuarioNestedInput
+    Tarefa?: TarefaUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateInput = {
@@ -3524,6 +4839,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     postagens?: PostagemUncheckedUpdateManyWithoutUsuarioNestedInput
+    Tarefa?: TarefaUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioCreateManyInput = {
@@ -3624,6 +4940,65 @@ export namespace Prisma {
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type TarefaCreateInput = {
+    conteudo: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+    usuario: UsuarioCreateNestedOneWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateInput = {
+    id?: number
+    conteudo: string
+    usuario_id: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+  }
+
+  export type TarefaUpdateInput = {
+    conteudo?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usuario?: UsuarioUpdateOneRequiredWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    conteudo?: StringFieldUpdateOperationsInput | string
+    usuario_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaCreateManyInput = {
+    id?: number
+    conteudo: string
+    usuario_id: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+  }
+
+  export type TarefaUpdateManyMutationInput = {
+    conteudo?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    conteudo?: StringFieldUpdateOperationsInput | string
+    usuario_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -3691,12 +5066,22 @@ export namespace Prisma {
     none?: PostagemWhereInput
   }
 
+  export type TarefaListRelationFilter = {
+    every?: TarefaWhereInput
+    some?: TarefaWhereInput
+    none?: TarefaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type PostagemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TarefaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3864,6 +5249,43 @@ export namespace Prisma {
     usuario_id?: SortOrder
   }
 
+  export type TarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    conteudo?: SortOrder
+    usuario_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type TarefaAvgOrderByAggregateInput = {
+    id?: SortOrder
+    usuario_id?: SortOrder
+  }
+
+  export type TarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    conteudo?: SortOrder
+    usuario_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type TarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    conteudo?: SortOrder
+    usuario_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    deleted_at?: SortOrder
+  }
+
+  export type TarefaSumOrderByAggregateInput = {
+    id?: SortOrder
+    usuario_id?: SortOrder
+  }
+
   export type PostagemCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<PostagemCreateWithoutUsuarioInput, PostagemUncheckedCreateWithoutUsuarioInput> | PostagemCreateWithoutUsuarioInput[] | PostagemUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: PostagemCreateOrConnectWithoutUsuarioInput | PostagemCreateOrConnectWithoutUsuarioInput[]
@@ -3871,11 +5293,25 @@ export namespace Prisma {
     connect?: PostagemWhereUniqueInput | PostagemWhereUniqueInput[]
   }
 
+  export type TarefaCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput> | TarefaCreateWithoutUsuarioInput[] | TarefaUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaCreateOrConnectWithoutUsuarioInput | TarefaCreateOrConnectWithoutUsuarioInput[]
+    createMany?: TarefaCreateManyUsuarioInputEnvelope
+    connect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+  }
+
   export type PostagemUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<PostagemCreateWithoutUsuarioInput, PostagemUncheckedCreateWithoutUsuarioInput> | PostagemCreateWithoutUsuarioInput[] | PostagemUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: PostagemCreateOrConnectWithoutUsuarioInput | PostagemCreateOrConnectWithoutUsuarioInput[]
     createMany?: PostagemCreateManyUsuarioInputEnvelope
     connect?: PostagemWhereUniqueInput | PostagemWhereUniqueInput[]
+  }
+
+  export type TarefaUncheckedCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput> | TarefaCreateWithoutUsuarioInput[] | TarefaUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaCreateOrConnectWithoutUsuarioInput | TarefaCreateOrConnectWithoutUsuarioInput[]
+    createMany?: TarefaCreateManyUsuarioInputEnvelope
+    connect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3908,6 +5344,20 @@ export namespace Prisma {
     deleteMany?: PostagemScalarWhereInput | PostagemScalarWhereInput[]
   }
 
+  export type TarefaUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput> | TarefaCreateWithoutUsuarioInput[] | TarefaUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaCreateOrConnectWithoutUsuarioInput | TarefaCreateOrConnectWithoutUsuarioInput[]
+    upsert?: TarefaUpsertWithWhereUniqueWithoutUsuarioInput | TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: TarefaCreateManyUsuarioInputEnvelope
+    set?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    disconnect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    delete?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    connect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    update?: TarefaUpdateWithWhereUniqueWithoutUsuarioInput | TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: TarefaUpdateManyWithWhereWithoutUsuarioInput | TarefaUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -3930,6 +5380,20 @@ export namespace Prisma {
     deleteMany?: PostagemScalarWhereInput | PostagemScalarWhereInput[]
   }
 
+  export type TarefaUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput> | TarefaCreateWithoutUsuarioInput[] | TarefaUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaCreateOrConnectWithoutUsuarioInput | TarefaCreateOrConnectWithoutUsuarioInput[]
+    upsert?: TarefaUpsertWithWhereUniqueWithoutUsuarioInput | TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: TarefaCreateManyUsuarioInputEnvelope
+    set?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    disconnect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    delete?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    connect?: TarefaWhereUniqueInput | TarefaWhereUniqueInput[]
+    update?: TarefaUpdateWithWhereUniqueWithoutUsuarioInput | TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: TarefaUpdateManyWithWhereWithoutUsuarioInput | TarefaUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
+  }
+
   export type UsuarioCreateNestedOneWithoutPostagensInput = {
     create?: XOR<UsuarioCreateWithoutPostagensInput, UsuarioUncheckedCreateWithoutPostagensInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutPostagensInput
@@ -3942,6 +5406,20 @@ export namespace Prisma {
     upsert?: UsuarioUpsertWithoutPostagensInput
     connect?: UsuarioWhereUniqueInput
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutPostagensInput, UsuarioUpdateWithoutPostagensInput>, UsuarioUncheckedUpdateWithoutPostagensInput>
+  }
+
+  export type UsuarioCreateNestedOneWithoutTarefaInput = {
+    create?: XOR<UsuarioCreateWithoutTarefaInput, UsuarioUncheckedCreateWithoutTarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutTarefaInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type UsuarioUpdateOneRequiredWithoutTarefaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutTarefaInput, UsuarioUncheckedCreateWithoutTarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutTarefaInput
+    upsert?: UsuarioUpsertWithoutTarefaInput
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutTarefaInput, UsuarioUpdateWithoutTarefaInput>, UsuarioUncheckedUpdateWithoutTarefaInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4131,6 +5609,30 @@ export namespace Prisma {
     data: PostagemCreateManyUsuarioInput | PostagemCreateManyUsuarioInput[]
   }
 
+  export type TarefaCreateWithoutUsuarioInput = {
+    conteudo: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+  }
+
+  export type TarefaUncheckedCreateWithoutUsuarioInput = {
+    id?: number
+    conteudo: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+  }
+
+  export type TarefaCreateOrConnectWithoutUsuarioInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type TarefaCreateManyUsuarioInputEnvelope = {
+    data: TarefaCreateManyUsuarioInput | TarefaCreateManyUsuarioInput[]
+  }
+
   export type PostagemUpsertWithWhereUniqueWithoutUsuarioInput = {
     where: PostagemWhereUniqueInput
     update: XOR<PostagemUpdateWithoutUsuarioInput, PostagemUncheckedUpdateWithoutUsuarioInput>
@@ -4160,6 +5662,34 @@ export namespace Prisma {
     deleted_at?: DateTimeNullableFilter<"Postagem"> | Date | string | null
   }
 
+  export type TarefaUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: TarefaWhereUniqueInput
+    update: XOR<TarefaUpdateWithoutUsuarioInput, TarefaUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<TarefaCreateWithoutUsuarioInput, TarefaUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type TarefaUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: TarefaWhereUniqueInput
+    data: XOR<TarefaUpdateWithoutUsuarioInput, TarefaUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type TarefaUpdateManyWithWhereWithoutUsuarioInput = {
+    where: TarefaScalarWhereInput
+    data: XOR<TarefaUpdateManyMutationInput, TarefaUncheckedUpdateManyWithoutUsuarioInput>
+  }
+
+  export type TarefaScalarWhereInput = {
+    AND?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
+    OR?: TarefaScalarWhereInput[]
+    NOT?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
+    id?: IntFilter<"Tarefa"> | number
+    conteudo?: StringFilter<"Tarefa"> | string
+    usuario_id?: IntFilter<"Tarefa"> | number
+    created_at?: DateTimeFilter<"Tarefa"> | Date | string
+    updated_at?: DateTimeFilter<"Tarefa"> | Date | string
+    deleted_at?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
+  }
+
   export type UsuarioCreateWithoutPostagensInput = {
     name: string
     email?: string | null
@@ -4168,6 +5698,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
+    Tarefa?: TarefaCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutPostagensInput = {
@@ -4179,6 +5710,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
+    Tarefa?: TarefaUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutPostagensInput = {
@@ -4205,6 +5737,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Tarefa?: TarefaUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPostagensInput = {
@@ -4216,12 +5749,83 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Tarefa?: TarefaUncheckedUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuarioCreateWithoutTarefaInput = {
+    name: string
+    email?: string | null
+    image?: string | null
+    apelido?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+    postagens?: PostagemCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutTarefaInput = {
+    id?: number
+    name: string
+    email?: string | null
+    image?: string | null
+    apelido?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+    postagens?: PostagemUncheckedCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutTarefaInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutTarefaInput, UsuarioUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type UsuarioUpsertWithoutTarefaInput = {
+    update: XOR<UsuarioUpdateWithoutTarefaInput, UsuarioUncheckedUpdateWithoutTarefaInput>
+    create: XOR<UsuarioCreateWithoutTarefaInput, UsuarioUncheckedCreateWithoutTarefaInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutTarefaInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutTarefaInput, UsuarioUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type UsuarioUpdateWithoutTarefaInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    apelido?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    postagens?: PostagemUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutTarefaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    apelido?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    postagens?: PostagemUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type PostagemCreateManyUsuarioInput = {
     id?: number
     title: string
     content: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    deleted_at?: Date | string | null
+  }
+
+  export type TarefaCreateManyUsuarioInput = {
+    id?: number
+    conteudo: string
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -4248,6 +5852,29 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaUpdateWithoutUsuarioInput = {
+    conteudo?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaUncheckedUpdateWithoutUsuarioInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    conteudo?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaUncheckedUpdateManyWithoutUsuarioInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    conteudo?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
