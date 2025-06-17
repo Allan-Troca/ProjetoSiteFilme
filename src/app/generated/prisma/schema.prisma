@@ -18,6 +18,7 @@ model Usuario {
   updated_at DateTime   @updatedAt
   deleted_at DateTime?
   postagens  Postagem[]
+  Tarefa     Tarefa[]
 
   @@map("usuarios")
 }
@@ -33,4 +34,16 @@ model Postagem {
   deleted_at DateTime?
 
   @@map("postagens")
+}
+
+model Tarefa {
+  id         Int       @id @default(autoincrement())
+  conteudo   String
+  usuario_id Int
+  usuario    Usuario   @relation(fields: [usuario_id], references: [id])
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  @@map("tarefas")
 }
