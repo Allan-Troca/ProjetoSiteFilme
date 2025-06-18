@@ -1,6 +1,7 @@
 const links = [
   { name: 'login', href: '/login' },
   { name: 'painel', href: '/painel' },
+  { name: 'filmes', href: '/painel/filmes' },
 ]
 
 export default function Page() {
