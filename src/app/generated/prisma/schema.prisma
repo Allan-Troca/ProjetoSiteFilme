@@ -39,6 +39,7 @@ model Postagem {
 model Tarefa {
   id         Int       @id @default(autoincrement())
   conteudo   String
+  concluido  Boolean   @default(false)
   usuario_id Int
   usuario    Usuario   @relation(fields: [usuario_id], references: [id])
   created_at DateTime  @default(now())

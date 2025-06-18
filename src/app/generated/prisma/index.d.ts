@@ -3404,6 +3404,7 @@ export namespace Prisma {
   export type TarefaMinAggregateOutputType = {
     id: number | null
     conteudo: string | null
+    concluido: boolean | null
     usuario_id: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -3413,6 +3414,7 @@ export namespace Prisma {
   export type TarefaMaxAggregateOutputType = {
     id: number | null
     conteudo: string | null
+    concluido: boolean | null
     usuario_id: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -3422,6 +3424,7 @@ export namespace Prisma {
   export type TarefaCountAggregateOutputType = {
     id: number
     conteudo: number
+    concluido: number
     usuario_id: number
     created_at: number
     updated_at: number
@@ -3443,6 +3446,7 @@ export namespace Prisma {
   export type TarefaMinAggregateInputType = {
     id?: true
     conteudo?: true
+    concluido?: true
     usuario_id?: true
     created_at?: true
     updated_at?: true
@@ -3452,6 +3456,7 @@ export namespace Prisma {
   export type TarefaMaxAggregateInputType = {
     id?: true
     conteudo?: true
+    concluido?: true
     usuario_id?: true
     created_at?: true
     updated_at?: true
@@ -3461,6 +3466,7 @@ export namespace Prisma {
   export type TarefaCountAggregateInputType = {
     id?: true
     conteudo?: true
+    concluido?: true
     usuario_id?: true
     created_at?: true
     updated_at?: true
@@ -3557,6 +3563,7 @@ export namespace Prisma {
   export type TarefaGroupByOutputType = {
     id: number
     conteudo: string
+    concluido: boolean
     usuario_id: number
     created_at: Date
     updated_at: Date
@@ -3585,6 +3592,7 @@ export namespace Prisma {
   export type TarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     conteudo?: boolean
+    concluido?: boolean
     usuario_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -3595,6 +3603,7 @@ export namespace Prisma {
   export type TarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     conteudo?: boolean
+    concluido?: boolean
     usuario_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -3605,6 +3614,7 @@ export namespace Prisma {
   export type TarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     conteudo?: boolean
+    concluido?: boolean
     usuario_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -3615,13 +3625,14 @@ export namespace Prisma {
   export type TarefaSelectScalar = {
     id?: boolean
     conteudo?: boolean
+    concluido?: boolean
     usuario_id?: boolean
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
   }
 
-  export type TarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "conteudo" | "usuario_id" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["tarefa"]>
+  export type TarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "conteudo" | "concluido" | "usuario_id" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["tarefa"]>
   export type TarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
   }
@@ -3640,6 +3651,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       conteudo: string
+      concluido: boolean
       usuario_id: number
       created_at: Date
       updated_at: Date
@@ -4070,6 +4082,7 @@ export namespace Prisma {
   interface TarefaFieldRefs {
     readonly id: FieldRef<"Tarefa", 'Int'>
     readonly conteudo: FieldRef<"Tarefa", 'String'>
+    readonly concluido: FieldRef<"Tarefa", 'Boolean'>
     readonly usuario_id: FieldRef<"Tarefa", 'Int'>
     readonly created_at: FieldRef<"Tarefa", 'DateTime'>
     readonly updated_at: FieldRef<"Tarefa", 'DateTime'>
@@ -4527,6 +4540,7 @@ export namespace Prisma {
   export const TarefaScalarFieldEnum: {
     id: 'id',
     conteudo: 'conteudo',
+    concluido: 'concluido',
     usuario_id: 'usuario_id',
     created_at: 'created_at',
     updated_at: 'updated_at',
@@ -4575,6 +4589,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4736,6 +4757,7 @@ export namespace Prisma {
     NOT?: TarefaWhereInput | TarefaWhereInput[]
     id?: IntFilter<"Tarefa"> | number
     conteudo?: StringFilter<"Tarefa"> | string
+    concluido?: BoolFilter<"Tarefa"> | boolean
     usuario_id?: IntFilter<"Tarefa"> | number
     created_at?: DateTimeFilter<"Tarefa"> | Date | string
     updated_at?: DateTimeFilter<"Tarefa"> | Date | string
@@ -4746,6 +4768,7 @@ export namespace Prisma {
   export type TarefaOrderByWithRelationInput = {
     id?: SortOrder
     conteudo?: SortOrder
+    concluido?: SortOrder
     usuario_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4759,6 +4782,7 @@ export namespace Prisma {
     OR?: TarefaWhereInput[]
     NOT?: TarefaWhereInput | TarefaWhereInput[]
     conteudo?: StringFilter<"Tarefa"> | string
+    concluido?: BoolFilter<"Tarefa"> | boolean
     usuario_id?: IntFilter<"Tarefa"> | number
     created_at?: DateTimeFilter<"Tarefa"> | Date | string
     updated_at?: DateTimeFilter<"Tarefa"> | Date | string
@@ -4769,6 +4793,7 @@ export namespace Prisma {
   export type TarefaOrderByWithAggregationInput = {
     id?: SortOrder
     conteudo?: SortOrder
+    concluido?: SortOrder
     usuario_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4786,6 +4811,7 @@ export namespace Prisma {
     NOT?: TarefaScalarWhereWithAggregatesInput | TarefaScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Tarefa"> | number
     conteudo?: StringWithAggregatesFilter<"Tarefa"> | string
+    concluido?: BoolWithAggregatesFilter<"Tarefa"> | boolean
     usuario_id?: IntWithAggregatesFilter<"Tarefa"> | number
     created_at?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
@@ -4942,6 +4968,7 @@ export namespace Prisma {
 
   export type TarefaCreateInput = {
     conteudo: string
+    concluido?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -4951,6 +4978,7 @@ export namespace Prisma {
   export type TarefaUncheckedCreateInput = {
     id?: number
     conteudo: string
+    concluido?: boolean
     usuario_id: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -4959,6 +4987,7 @@ export namespace Prisma {
 
   export type TarefaUpdateInput = {
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4968,6 +4997,7 @@ export namespace Prisma {
   export type TarefaUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     usuario_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4977,6 +5007,7 @@ export namespace Prisma {
   export type TarefaCreateManyInput = {
     id?: number
     conteudo: string
+    concluido?: boolean
     usuario_id: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -4985,6 +5016,7 @@ export namespace Prisma {
 
   export type TarefaUpdateManyMutationInput = {
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4993,6 +5025,7 @@ export namespace Prisma {
   export type TarefaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     usuario_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5249,9 +5282,15 @@ export namespace Prisma {
     usuario_id?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type TarefaCountOrderByAggregateInput = {
     id?: SortOrder
     conteudo?: SortOrder
+    concluido?: SortOrder
     usuario_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5266,6 +5305,7 @@ export namespace Prisma {
   export type TarefaMaxOrderByAggregateInput = {
     id?: SortOrder
     conteudo?: SortOrder
+    concluido?: SortOrder
     usuario_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5275,6 +5315,7 @@ export namespace Prisma {
   export type TarefaMinOrderByAggregateInput = {
     id?: SortOrder
     conteudo?: SortOrder
+    concluido?: SortOrder
     usuario_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5284,6 +5325,14 @@ export namespace Prisma {
   export type TarefaSumOrderByAggregateInput = {
     id?: SortOrder
     usuario_id?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type PostagemCreateNestedManyWithoutUsuarioInput = {
@@ -5412,6 +5461,10 @@ export namespace Prisma {
     create?: XOR<UsuarioCreateWithoutTarefaInput, UsuarioUncheckedCreateWithoutTarefaInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutTarefaInput
     connect?: UsuarioWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UsuarioUpdateOneRequiredWithoutTarefaNestedInput = {
@@ -5583,6 +5636,19 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type PostagemCreateWithoutUsuarioInput = {
     title: string
     content: string
@@ -5611,6 +5677,7 @@ export namespace Prisma {
 
   export type TarefaCreateWithoutUsuarioInput = {
     conteudo: string
+    concluido?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -5619,6 +5686,7 @@ export namespace Prisma {
   export type TarefaUncheckedCreateWithoutUsuarioInput = {
     id?: number
     conteudo: string
+    concluido?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -5684,6 +5752,7 @@ export namespace Prisma {
     NOT?: TarefaScalarWhereInput | TarefaScalarWhereInput[]
     id?: IntFilter<"Tarefa"> | number
     conteudo?: StringFilter<"Tarefa"> | string
+    concluido?: BoolFilter<"Tarefa"> | boolean
     usuario_id?: IntFilter<"Tarefa"> | number
     created_at?: DateTimeFilter<"Tarefa"> | Date | string
     updated_at?: DateTimeFilter<"Tarefa"> | Date | string
@@ -5826,6 +5895,7 @@ export namespace Prisma {
   export type TarefaCreateManyUsuarioInput = {
     id?: number
     conteudo: string
+    concluido?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -5859,6 +5929,7 @@ export namespace Prisma {
 
   export type TarefaUpdateWithoutUsuarioInput = {
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5867,6 +5938,7 @@ export namespace Prisma {
   export type TarefaUncheckedUpdateWithoutUsuarioInput = {
     id?: IntFieldUpdateOperationsInput | number
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5875,6 +5947,7 @@ export namespace Prisma {
   export type TarefaUncheckedUpdateManyWithoutUsuarioInput = {
     id?: IntFieldUpdateOperationsInput | number
     conteudo?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

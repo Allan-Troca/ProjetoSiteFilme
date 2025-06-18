@@ -141,6 +141,7 @@ exports.Prisma.PostagemScalarFieldEnum = {
 exports.Prisma.TarefaScalarFieldEnum = {
   id: 'id',
   conteudo: 'conteudo',
+  concluido: 'concluido',
   usuario_id: 'usuario_id',
   created_at: 'created_at',
   updated_at: 'updated_at',
