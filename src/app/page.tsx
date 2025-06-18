@@ -1,8 +1,6 @@
 const links = [
-  { name: 'Open roles', href: '#' },
-  { name: 'Internship program', href: '#' },
-  { name: 'Our values', href: '#' },
-  { name: 'Meet our leadership', href: '#' },
+  { name: 'login', href: '/login' },
+  { name: 'painel', href: '/painel' },
 ]
 
 export default function Page() {
