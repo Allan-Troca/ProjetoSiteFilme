@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.8.2
- * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+ * Prisma Client JS version: 6.10.0
+ * Query Engine version: aee10d5a411e4360c6d3445ce4810ca65adbf3e8
  */
 Prisma.prismaVersion = {
-  client: "6.8.2",
-  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
+  client: "6.10.0",
+  engine: "aee10d5a411e4360c6d3445ce4810ca65adbf3e8"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -148,7 +148,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\03317046090\\Documents\\ProjetoSiteFilme\\src\\app\\generated\\prisma",
+      "value": "D:\\faculdade\\ProjetoFilme\\ProjetoSiteFilme\\src\\app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -162,21 +162,19 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\03317046090\\Documents\\ProjetoSiteFilme\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\faculdade\\ProjetoFilme\\ProjetoSiteFilme\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../../prisma/.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../../prisma",
-  "clientVersion": "6.8.2",
-  "engineVersion": "2060c79ba17c6bb9f5823312b6f6b7f4a845738e",
+  "clientVersion": "6.10.0",
+  "engineVersion": "aee10d5a411e4360c6d3445ce4810ca65adbf3e8",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
